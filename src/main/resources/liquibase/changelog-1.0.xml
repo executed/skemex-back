@@ -1,0 +1,389 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="executed (generated)" id="20181227-1">
+        <createSequence sequenceName="hibernate_sequence"/>
+    </changeSet>
+    <changeSet author="executed (generated)" id="20181227-2">
+        <createTable tableName="employee">
+            <column name="nickname" type="VARCHAR(255)">
+                <constraints primaryKey="true" primaryKeyName="employee_pkey"/>
+            </column>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="last_name" type="VARCHAR(255)"/>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="organization_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="executed (generated)" id="20181227-3">
+        <createTable tableName="employees_roles">
+            <column name="nickname" type="VARCHAR(255)">
+                <constraints primaryKey="true" primaryKeyName="employees_roles_pkey"/>
+            </column>
+            <column name="role_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="employees_roles_pkey"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="executed (generated)" id="20181227-4">
+        <createTable tableName="floor">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="floor_pkey"/>
+            </column>
+            <column name="number" type="INTEGER"/>
+            <column name="office_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="executed (generated)" id="20181227-5">
+        <createTable tableName="office">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="office_pkey"/>
+            </column>
+            <column name="time_zone" type="VARCHAR(255)"/>
+            <column name="city" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="executed (generated)" id="20181227-6">
+        <createTable tableName="organization">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="organization_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="owner_nickname" type="VARCHAR(255)"/>
+            <column name="parent" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="executed (generated)" id="20181227-7">
+        <createTable tableName="reservation">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="reservation_pkey"/>
+            </column>
+            <column name="end_time" type="DATE"/>
+            <column name="request_status" type="VARCHAR(255)"/>
+            <column name="requested_time" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="start_time" type="DATE"/>
+            <column name="approver_nickname" type="VARCHAR(255)"/>
+            <column name="employee_nickname" type="VARCHAR(255)"/>
+            <column name="requester_nickname" type="VARCHAR(255)"/>
+            <column name="workspace_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="executed (generated)" id="20181227-8">
+        <createTable tableName="role">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="role_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="executed (generated)" id="20181227-9">
+        <createTable tableName="room">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="room_pkey"/>
+            </column>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="floor_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="executed (generated)" id="20181227-10">
+        <createTable tableName="workspace">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="workspace_pkey"/>
+            </column>
+            <column name="number" type="INTEGER"/>
+            <column name="status" type="VARCHAR(255)"/>
+            <column name="x" type="FLOAT4"/>
+            <column name="y" type="FLOAT4"/>
+            <column name="employee_nickname" type="VARCHAR(255)"/>
+            <column name="room_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="executed (generated)" id="20181227-11">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="employees_roles"
+                                 constraintName="fk1la97h512h1eda6k2dy7qumb6" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="role" validate="true"/>
+    </changeSet>
+    <changeSet author="executed (generated)" id="20181227-23">
+        <addForeignKeyConstraint baseColumnNames="nickname" baseTableName="employees_roles"
+                                 constraintName="fkqi08er3r2m9u1251du6aamkg0" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="nickname" referencedTableName="employee" validate="true"/>
+    </changeSet>
+    <changeSet author="executed (generated)" id="20181227-12">
+        <addForeignKeyConstraint baseColumnNames="organization_id" baseTableName="employee"
+                                 constraintName="fk2wqom7o8hqfpw4wgxue06ydnh" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="organization" validate="true"/>
+    </changeSet>
+    <changeSet author="executed (generated)" id="20181227-13">
+        <addForeignKeyConstraint baseColumnNames="requester_nickname" baseTableName="reservation"
+                                 constraintName="fk5jc4m509s9v6gm7rfi1lv68m7" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="nickname" referencedTableName="employee" validate="true"/>
+    </changeSet>
+    <changeSet author="executed (generated)" id="20181227-14">
+        <addForeignKeyConstraint baseColumnNames="approver_nickname" baseTableName="reservation"
+                                 constraintName="fk72jaube3729jsvw32um9hdjek" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="nickname" referencedTableName="employee" validate="true"/>
+    </changeSet>
+    <changeSet author="executed (generated)" id="20181227-15">
+        <addForeignKeyConstraint baseColumnNames="floor_id" baseTableName="room"
+                                 constraintName="fk9vjhdmo6uiy7gm94kwb9vwow2" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="floor" validate="true"/>
+    </changeSet>
+    <changeSet author="executed (generated)" id="20181227-16">
+        <addForeignKeyConstraint baseColumnNames="workspace_id" baseTableName="reservation"
+                                 constraintName="fkbyr3dfusk5sq6jv49ds46x7uu" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="workspace" validate="true"/>
+    </changeSet>
+    <changeSet author="executed (generated)" id="20181227-17">
+        <addForeignKeyConstraint baseColumnNames="room_id" baseTableName="workspace"
+                                 constraintName="fkcdkr05b7lkxh9vm7durlv4k3n" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="room" validate="true"/>
+    </changeSet>
+    <changeSet author="executed (generated)" id="20181227-18">
+        <addForeignKeyConstraint baseColumnNames="employee_nickname" baseTableName="workspace"
+                                 constraintName="fkficfu5bjh3k9e1vaic0o9l8lk" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="nickname" referencedTableName="employee" validate="true"/>
+    </changeSet>
+    <changeSet author="executed (generated)" id="20181227-19">
+        <addForeignKeyConstraint baseColumnNames="parent" baseTableName="organization"
+                                 constraintName="fkiu9opbk0y0cfi4t8pbj8difwy" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="organization" validate="true"/>
+    </changeSet>
+    <changeSet author="executed (generated)" id="20181227-20">
+        <addForeignKeyConstraint baseColumnNames="office_id" baseTableName="floor"
+                                 constraintName="fkmd7drnlc2qk07ud6noq1yrsoi" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="office" validate="true"/>
+    </changeSet>
+    <changeSet author="executed (generated)" id="20181227-21">
+        <addForeignKeyConstraint baseColumnNames="owner_nickname" baseTableName="organization"
+                                 constraintName="fko7dgmdvhqg2r1424wupaxdqn7" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="nickname" referencedTableName="employee" validate="true"/>
+    </changeSet>
+    <changeSet author="executed (generated)" id="20181227-22">
+        <addForeignKeyConstraint baseColumnNames="employee_nickname" baseTableName="reservation"
+                                 constraintName="fkpgkt6l1vntyycnpfes4t5q7r6" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="nickname" referencedTableName="employee" validate="true"/>
+    </changeSet>
+    <changeSet author="executed" id="20181227-24">
+        <insert tableName="role">
+            <column name="id" value="1"/>
+            <column name="name" value="ADMIN"/>
+        </insert>
+        <insert tableName="role">
+            <column name="id" value="2"/>
+            <column name="name" value="EMPLOYEE"/>
+        </insert>
+    </changeSet>
+    <changeSet id="20191903-03" author="executed">
+        <dropTable tableName="employees_roles"/>
+        <dropColumn tableName="employee" columnName="password"/>
+    </changeSet>
+    <changeSet author="executed" id="20191532-03">
+        <createTable tableName="user">
+            <column name="nickname" type="VARCHAR(255)">
+                <constraints primaryKey="true" primaryKeyName="user_pkey"/>
+            </column>
+            <column name="password" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="executed" id="20191240-03">
+        <createTable tableName="users_roles">
+            <column name="nickname" type="VARCHAR(255)">
+                <constraints primaryKey="true" primaryKeyName="users_roles_pkey"/>
+            </column>
+            <column name="role_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="users_roles_pkey"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="20191540-03" author="executed">
+        <update tableName="role">
+            <column name="name" value="EMPLOYEE"/>
+            <where>name = 'USER'</where>
+        </update>
+        <delete tableName="office">
+            <where>id = 1</where>
+        </delete>
+    </changeSet>
+    <changeSet id="20190128-01" author="executed">
+        <update tableName="role">
+            <column name="name" value="ROLE_EMPLOYEE"/>
+            <where>name = 'EMPLOYEE'</where>
+        </update>
+        <update tableName="role">
+            <column name="name" value="ROLE_ADMIN"/>
+            <where>name = 'ADMIN'</where>
+        </update>
+    </changeSet>
+    <changeSet author="executed" id="20191913-03">
+        <addForeignKeyConstraint baseColumnNames="nickname" baseTableName="employee" constraintName="employee_user_nickname"
+                                 deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="nickname" referencedTableName="user" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="users_roles"
+                                 constraintName="users_roles_role_id" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="role" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="nickname" baseTableName="users_roles"
+                                 constraintName="users_roles_nickname" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="nickname"
+                                 referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="executed (generated)" id="1546598119008-2">
+        <createTable tableName="notification">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="NotificationPK"/>
+            </column>
+            <column name="message" type="VARCHAR(255)"/>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="recipient_nickname" type="VARCHAR(255)"/>
+            <column name="viewed" type="BOOLEAN"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="executed (generated)" id="1546600133828-1">
+        <createTable tableName="errorlog">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="errorlogPK"/>
+            </column>
+            <column name="appid" type="VARCHAR(255)"/>
+            <column name="fullid" type="TEXT"/>
+            <column name="location" type="TEXT"/>
+            <column name="message" type="TEXT"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="status" type="INT"/>
+            <column name="time" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="url" type="VARCHAR(255)"/>
+            <column name="username" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="executed" id="1546622235828-1">
+        <dropForeignKeyConstraint baseTableName="employee" constraintName="employee_user_nickname"/>
+    </changeSet>
+    <changeSet author="executed (generated)" id="1547466823884-1">
+        <addUniqueConstraint columnNames="fullid" constraintName="UC_ERRORLOGFULLID_COL"
+                             tableName="errorlog"/>
+    </changeSet>
+    <changeSet author="executed (generated)" id="1547466823884-2">
+        <addUniqueConstraint columnNames="location" constraintName="UC_ERRORLOGLOCATION_COL"
+                             tableName="errorlog"/>
+    </changeSet>
+    <changeSet author="executed (generated)" id="1547466823884-3">
+        <dropSequence sequenceName="hibernate_sequence"/>
+    </changeSet>
+    <changeSet author="executed" id="14012019-1">
+        <addColumn tableName="reservation">
+            <column name="description" type="TEXT"/>
+        </addColumn>
+        <addColumn tableName="employee">
+            <column name="active" type="BOOLEAN"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="executed (generated)" id="1547645004415-1">
+        <addColumn tableName="errorlog">
+            <column name="archived" type="BOOLEAN"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="executed (generated)" id="1547653507243-1">
+        <addForeignKeyConstraint baseColumnNames="username"
+                                 baseTableName="errorlog"
+                                 constraintName="errorlog_employee_nickname_fk"
+                                 deferrable="true"
+                                 initiallyDeferred="true"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="nickname"
+                                 referencedTableName="employee"/>
+    </changeSet>
+    <changeSet author="executed (generated)" id="1548765748194-4">
+        <createTable tableName="migrationconflict">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="migrationconflict_pkey"/>
+            </column>
+            <column name="message" type="VARCHAR(255)"/>
+            <column name="resolved" type="BOOLEAN"/>
+            <column name="recipient_nickname" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="executed (generated)" id="1548765748194-11">
+        <createTable tableName="roomconflictattributes">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="roomconflictattributes_pkey"/>
+            </column>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="conflict_id" type="BIGINT"/>
+            <column name="office_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="executed (generated)" id="1548765748194-15">
+        <createTable tableName="workspaceconflictattributes">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="workspaceconflictattributes_pkey"/>
+            </column>
+            <column name="new_owner_nickname" type="VARCHAR(255)"/>
+            <column name="new_status" type="VARCHAR(255)"/>
+            <column name="workspace_id" type="BIGINT"/>
+            <column name="conflict_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="executed (generated)" id="1548765748194-28">
+        <addForeignKeyConstraint baseColumnNames="conflict_id"
+                                 baseTableName="workspaceconflictattributes"
+                                 constraintName="fk_conflict_id" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION"
+                                 onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="migrationconflict"/>
+    </changeSet>
+    <changeSet author="executed (generated)" id="1548765748194-29">
+        <addForeignKeyConstraint baseColumnNames="office_id"
+                                 baseTableName="roomconflictattributes"
+                                 constraintName="fk_office_id" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION"
+                                 onUpdate="NO ACTION" referencedColumnNames="id"
+                                 referencedTableName="office"/>
+    </changeSet>
+    <changeSet author="executed (generated)" id="1548765748194-30">
+        <addForeignKeyConstraint baseColumnNames="recipient_nickname"
+                                 baseTableName="migrationconflict"
+                                 constraintName="fk_recipient_nickname"
+                                 deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="nickname"
+                                 referencedTableName="employee"/>
+    </changeSet>
+    <changeSet author="executed (generated)" id="1548765748194-31">
+        <addForeignKeyConstraint baseColumnNames="workspace_id"
+                                 baseTableName="workspaceconflictattributes"
+                                 constraintName="fk_workspace_id"
+                                 deferrable="false"
+                                 initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id"
+                                 referencedTableName="workspace"/>
+    </changeSet>
+    <changeSet author="executed (generated)" id="1548768205533-1">
+        <createTable tableName="database_dump">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="database_dump_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="data" type="TIMESTAMP(6) WITHOUT TIME ZONE"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
