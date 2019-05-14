@@ -28,7 +28,7 @@ public class PgDumpServiceImpl implements DumpService {
 
     @PostConstruct
     public void postConstruct() throws DumpException {
-        String databaseUsername = env.getProperty("db.username");
+        String databaseUsername = System.getenv("JDBC_DATABASE_USERNAME");
         String databaseName = env.getProperty("dumpUtil.database");
         String databasePort = env.getProperty("dumpUtil.port");
         String databaseHost = env.getProperty("dumpUtil.host");
@@ -65,7 +65,7 @@ public class PgDumpServiceImpl implements DumpService {
         staticCommands.add(backupFileName);
         try {
             ProcessBuilder pb = new ProcessBuilder(staticCommands);
-            pb.environment().put("PGPASSWORD",  env.getProperty("db.password"));
+            pb.environment().put("PGPASSWORD",  System.getenv("JDBC_DATABASE_PASSWORD"));
             Process process = pb.start();
 
             try (BufferedReader buf = new BufferedReader(
