@@ -89,6 +89,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .deleteCookies(cookieName);
     }
 
+    @Override
+    public void configure(WebSecurity web) {
+        web.ignoring().antMatchers("/info/infoDocURL");
+    }
+
     @Bean
     public CsrfTokenRepository csrfTokenRepository() {
         CookieCsrfTokenRepository repository =
