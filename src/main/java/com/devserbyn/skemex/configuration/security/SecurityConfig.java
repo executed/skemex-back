@@ -58,6 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrfTokenRepository(csrfTokenRepository())
                 .and()
                 .cors()
+                .configurationSource(corsConfigurationSource(""))
                 .and()
                 .exceptionHandling()
                 .authenticationEntryPoint((req, resp, ex) -> resp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
