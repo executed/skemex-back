@@ -54,9 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http
-                .csrf()
-                .csrfTokenRepository(csrfTokenRepository())
-                .and()
+                .csrf().disable()
+                //.csrfTokenRepository(csrfTokenRepository())
                 .cors()
                 .configurationSource(corsConfigurationSource(""))
                 .and()
