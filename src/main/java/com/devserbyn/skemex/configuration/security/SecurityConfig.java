@@ -64,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/index.html", "/", "/home"
-                        ,"/favicon.ico","/*.js","/*.css","/*.png").permitAll()
+                        ,"/favicon.ico","/*.js","/*.css","/*.png", "/info/infoDocURL").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -87,11 +87,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .invalidateHttpSession(true)
                 .deleteCookies(cookieName);
-    }
-
-    @Override
-    public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/info/infoDocURL");
     }
 
     @Bean
