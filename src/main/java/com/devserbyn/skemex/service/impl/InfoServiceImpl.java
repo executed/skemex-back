@@ -23,4 +23,9 @@ public class InfoServiceImpl implements InfoService
     public String getInfoDocumentURL() {
         return env.getProperty("info.doc.infoDocumentURL");
     }
+
+    @Override
+    public String getInfoVideoId() {
+        return env.getProperty("info.doc.infoVideoId");
+    }
 }

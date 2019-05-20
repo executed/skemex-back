@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,13 +27,19 @@ public class InfoController {
 
     private final InfoService infoService;
 
-    @GetMapping("/infoDocURL")
+    @GetMapping("/open/infoDocURL")
     public Response<String> findInfoDocumentURL(){
         String result = infoService.getInfoDocumentURL();
         return Response.success(result);
     }
 
-    @GetMapping("/infoDoc")
+    @GetMapping("/open/infoVideoId")
+    public Response<String> findInfoVideoId(){
+        String result = infoService.getInfoVideoId();
+        return Response.success(result);
+    }
+
+    @GetMapping("/open/infoDoc")
     public ResponseEntity<byte[]> getPDF() throws IOException {
         File resultFile = new ClassPathResource("Conflict of Interest Policy.pdf").getFile();
         String resultFileName = resultFile.getName();
