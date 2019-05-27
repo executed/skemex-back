@@ -41,7 +41,7 @@ public class InfoController {
 
     @GetMapping("/open/infoDoc")
     public ResponseEntity<byte[]> getPDF() throws IOException {
-        File resultFile = new ClassPathResource("Conflict of Interest Policy.pdf").getFile();
+        File resultFile = new ClassPathResource("infoDocument.pdf").getFile();
         String resultFileName = resultFile.getName();
 
         if (!resultFile.exists()) {
