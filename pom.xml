@@ -31,7 +31,7 @@
         <spring-security.ver>5.1.2.RELEASE</spring-security.ver>
         <spring-data-jpa.ver>2.1.8.RELEASE</spring-data-jpa.ver>
         <!-- Hibernate related dependencies versions -->
-        <hibernate-core.ver>5.3.7.Final</hibernate-core.ver>
+        <hibernate-core.ver>5.2.9.Final</hibernate-core.ver>
         <hibernate-validator.ver>6.0.14.Final</hibernate-validator.ver>
         <!-- Liquibase related dependencies versions -->
         <liquibase-maven-plugin.ver>3.5.5</liquibase-maven-plugin.ver>
